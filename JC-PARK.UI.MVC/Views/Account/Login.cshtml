@@ -1,0 +1,135 @@
+﻿@model JC_PARK.Web.MVC.ViewModels.LoginViewModel
+
+@{
+    //Layout = null;
+    ViewBag.Title = "Login";
+}
+
+<style>
+        body {
+            padding-top: 60px;
+            background-color: transparent;
+        }
+
+        .panel-heading {
+            padding: 5px 15px;
+        }
+
+        .panel-footer {
+            padding: 1px 15px;
+            color: #A0A0A0;
+        }
+
+        .profile-img {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 10px;
+            display: block;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -ms-border-radius: 50%;
+            border-radius: 50%;
+        }
+    </style>
+
+<div class="container" style="margin-top:40px">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <div class="center-block">
+                <span><img class="img-responsive" src="~/Content/images/LogoUltraGamesPark.png" alt="" /></span>
+            </div>
+            <div class="panel">
+                <div class="panel-heading text-center">
+                    <h1><strong> Login de Acesso </strong></h1>
+                </div>
+                <div class="panel-body">
+
+                    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { id = "logoutForm" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                        <fieldset>
+                            @*<div class="row">
+                                    <div class="center-block">
+                                            <span><img class="profile-img" src="~/Content/Images/photo.png" alt="" /></span>
+                                        </div>
+                                </div>*@
+                            <div class="row">
+                                <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+                                    <div class="form-group">
+                                        <div class="input-group input-md">
+                                            <span class="input-group-addon">
+                                                <i class="fa fa-envelope"></i>
+                                            </span>
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @autofocus = "autofocus", @onfocus = "this.value=''", @placeholder = "E-mail do Usuário", @title = "E-mail de acesso" })
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group hide" id="EventoDiv">
+                                        @Html.DropDownListFor(model => model.Evento, Enumerable.Empty<SelectListItem>(), "Selecione o Evento...", new { @id = "ddlEventos", @class = "form-control"})
+                                        @Html.ValidationMessageFor(model => model.Evento, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <span class="input-group-addon input-md">
+                                                <i class="fa fa-lock"></i>
+                                            </span>
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Senha", title = "Senha de acesso" })
+                                        </div>
+                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" class="btn btn-success btn-block" value="Entrar">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    }
+                </div>
+                <div class="panel-footer ">
+                    @*@Html.Partial("_Footer")*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(document).ready(function () {
+
+            $("#Email").blur(function () {
+                var usuario = $(this).val();
+                //alert($('#Email').val().substring(0,5));
+
+                if ($('#Email').val().substring(0,5) === "admin" || $('#Email').val() === "" ) return;
+                
+                $('#EventoDiv').removeClass('hide');
+                //$('#EventoDiv').show();
+                
+                var url = '/Account/LoadEvento/';
+                $.getJSON(url, { usuario: usuario },
+                    function (eventosData) {
+                        $("#ddlEventos :gt(0)").remove();
+                        var select = $("#ddlEventos");
+                        select.attr('disabled', false);
+                        select.empty();
+                        select.append($('<option/>', {
+                            value: 0,
+                            text: "Selecione o Evento... "
+                        }));
+                        $.each(eventosData, function (index, itemData) {
+                            select.append($('<option/>', {
+                                value: itemData.Value,
+                                text: itemData.Text
+                            }));
+                        });
+                        $('#ddlEventos').focus();
+                    });
+            });
+        })
+    </script>
+}

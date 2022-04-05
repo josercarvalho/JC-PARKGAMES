@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "Saida";
+}
+
+<div class=" container-fluid">
+    <div class="nav navbar-nav navbar-left">
+        <h1>@ViewBag.empresa</h1>
+    </div>
+    <div class="nav navbar-nav navbar-right">
+        <h2>Saida </h2>
+    </div>
+</div>
+
+
+@using (Ajax.BeginForm("_Saida", "Atendimento", new AjaxOptions
+{
+    HttpMethod = "Get",
+
+    UpdateTargetId = "divResultado",
+    InsertionMode = InsertionMode.InsertAfter,
+
+    LoadingElementDuration = 5000,
+    LoadingElementId = "Carregando",
+
+}))
+{
+    <div class="well bs-component row">
+        <div class="col-md-7 col-xs-8">
+            <div class="col-md-7">
+                <div class="input-group input-group-lg">
+                    @Html.TextBox("etiqueta", null, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Pulseira nº" })
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary btn-group-lg" type="submit" title="Procurar">
+                            <span class="input-group"><i class="fa fa-search"></i></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-5 col-sm-3 text-right">
+            @Html.ActionLink("Voltar", "Index", "Atendimento", null, new { @class = "btn btn-warning btn-md", @title = "Tela Inicial" })
+        </div>
+        <div class="clearfix"></div>
+        <div id="divResultado"></div>
+
+        <div id="Carregando" class="ui-loader" style="top: 270px; left: 553px; display: none;">
+            <div class="spin"></div>
+            <span>Aguarde ...</span>
+        </div>
+
+        <div class="bb-alert alert alert-info" style="display:none;">
+            <span>Os exemplos preencher esse alerta com conteúdo fictício</span>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

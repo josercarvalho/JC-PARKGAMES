@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Ultra Games Park</title>
+
+    <!-- Le styles -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*<link href="~/Content/bootstrap-Flatly.min.css" rel="stylesheet" />*@
+    <link href="~/Content/bootstrap-Darkly.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    @Html.Partial("_MenuAtende")
+    <div class="container body-content">
+        <div id="divResultado"></div>
+        @*@RenderBody()*@
+        <section class="content-wrapper main-content clear-fix">@RenderBody()</section>
+        <hr />
+        @Html.Partial("_Footer")
+    </div>        
+    
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

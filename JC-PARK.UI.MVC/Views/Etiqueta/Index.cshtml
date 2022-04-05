@@ -1,0 +1,132 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<JC_PARK.Domain.Entities.Etiqueta>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@*<div class="well bs-component">*@
+<fieldset>
+    <legend>Listagem de Etiquetas</legend>
+    @using (Html.BeginForm("Index", "Etiqueta", FormMethod.Get, new { @class = "row" }))
+    {
+        <div class="col-md-7 col-xs-8">
+            @*<div class="col-md-6">
+                    <div class="input-group input-group-sm">
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Procura por Nome" })
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-sm" type="submit" title="Procurar">
+                                <span class="input-group"><i class="fa fa-search"></i></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>*@
+        </div>
+        <div class="col-md-5 col-sm-3 text-right">
+            @Html.ActionLink("Novo Registro", "Create", null, new { @class = "btn btn-success btn-sm", @Title = "Cadastrar" })
+            @Html.ActionLink("Voltar", "Index", "Home", null, new { @class = "btn btn-warning btn-sm", @title = "Tela Inicial" })
+        </div>
+    }
+    <hr />
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("#")
+                </th>
+                <th>
+                    @Html.DisplayName("Data Cadastro")
+                </th>
+                <th>
+                    @Html.DisplayName("Numero Solicitado")
+                </th>
+                <th>
+                    @Html.DisplayName("Quantidade")
+                </th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EtiquetaId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataCadastro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumeroAtual)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Quantidade)
+                    </td>
+                    <td class="mnuTable">
+                        <div class="btn-group-table">
+                            @*@Html.ActionLink(" ", "Edit", new { id = item.EtiquetaId }, new { @class = "btn btn-default btn-sm fa fa-folder-open", Title = "Editar" })*@
+                            <button id="btn-delete" class="btn btn-default btn-sm fa fa-trash-o disabled" data-nome="@item.EtiquetaId" data-id="@item.EtiquetaId" title="Opção Desativada"></button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="pagination-sm">
+        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+</fieldset>
+@*</div>*@
+
+<div class="bb-alert alert alert-info" style="display: none;">
+    <span>Os exemplos preencher esse alerta com conteúdo fictício</span>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            Example.init({
+                "selector": ".bb-alert"
+            });
+        });
+
+        function Refresh() {
+            location.reload(true);
+        };
+    </script>
+
+    <script type="text/javascript">
+        $(document)
+            .ready(function () {
+                var excluiEtiqueta;
+                $("#btn-delete")
+                    .click(function (e) {
+                        e.preventDefault();
+                        var itemId = $(this).data('id');
+                        var nome = $(this).data("nome");
+                        bootbox.confirm("Tem certeza que deseja EXCLUIR " + nome + " ?",
+                            function (result) {
+                                if (result) {
+                                    excluiEtiqueta(itemId);
+                                    setTimeout("Refresh()", 3000);
+                                }
+                            });
+                    });
+                excluiEtiqueta = function (id) {
+                    var strUrl = "/Etiqueta/DeleteEtiqueta";
+                    $.post(strUrl,
+                        { id: id },
+                        function (data) {
+                            Example.show(data);
+                        },
+                        "json");
+                };
+            });
+    </script>
+}

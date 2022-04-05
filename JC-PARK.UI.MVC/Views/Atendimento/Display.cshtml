@@ -1,0 +1,122 @@
+﻿@model JC_PARK.Domain.Entities.Cliente
+
+@{
+    ViewBag.Title = "Display";
+}
+
+<h2>Display</h2>
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.EmpresaId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmpresaId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeCrianca)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeCrianca)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NomePai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomePai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TelefonePai)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TelefonePai)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataCadastro)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataCadastro)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraEntrada)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraEntrada)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HoraSaida)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HoraSaida)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estadia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estadia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Valor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Valor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorExcedente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorExcedente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ValorTotal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ValorTotal)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ativo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EtiquetaId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EtiquetaId)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ClienteId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

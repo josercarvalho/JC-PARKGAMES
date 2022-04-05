@@ -1,0 +1,29 @@
+﻿@using JC_PARK.Web.MVC.Util
+
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("JC-Park", "Index", "Atendimento", null, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            @if (SessionManager.IsAuthenticated)
+            {
+                <ul class="nav navbar-nav">
+                    <!-- DropDown menu Clientes -->
+                    <li>@Html.ActionLink("Clientes", "Cliente", "Atendimento")</li>
+
+                    <!-- DropDown menu Movimento -->
+                    <li>@Html.ActionLink("Movimento", "Movimento", "Atendimento")</li>
+
+                    @*<li>@Html.ActionLink("Sobre", "About", "Home")</li>*@
+                </ul>
+            }
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</div>

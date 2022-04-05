@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Ultra Games Park</title>
+
+    <!-- Le styles -->
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @*<link href="~/Content/bootstrap-Flatly.min.css" rel="stylesheet" />*@    
+</head>
+<body>
+    @Html.Partial("_Menu")
+    <div class="container body-content" id="body">
+        @*@RenderBody()*@
+        <section class="content-wrapper main-content clear-fix">@RenderBody()</section>
+        <hr />
+        @Html.Partial("_Footer")
+    </div>
+    <!-- Le javascript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+@*<li><a href="#">Some other action</a></li>
+    <li class="divider"></li>
+    <li class="dropdown-submenu">
+        <a tabindex="-1" href="#">Hover me for more options</a>
+        <ul class="dropdown-menu">
+            <li><a tabindex="-1" href="#">Second level</a></li>
+            <li class="dropdown-submenu">
+                <a href="#">Even More..</a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">3rd level</a></li>
+                    <li><a href="#">3rd level</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Second level</a></li>
+            <li><a href="#">Second level</a></li>
+        </ul>
+    </li>*@

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B95FC8E2-ADAB-48D6-B72C-6F4E75D7DEBD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JC_PARK.Aplication</RootNamespace>
+    <AssemblyName>JC-PARK.Aplication</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.CommonServiceLocator.1.2.2\lib\net35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interface\IAppServicoBase.cs" />
+    <Compile Include="Interface\IAppServicoDaEmpresa.cs" />
+    <Compile Include="Interface\IAppServicoDaEtiqueta.cs" />
+    <Compile Include="Interface\IAppServicoDeCliente.cs" />
+    <Compile Include="Interface\IAppServicoDeClienteEvento.cs" />
+    <Compile Include="Interface\IAppServicoDeDespesa.cs" />
+    <Compile Include="Interface\IAppServicoDeEventos.cs" />
+    <Compile Include="Interface\IAppServicoDeEventoUsuario.cs" />
+    <Compile Include="Interface\IAppServicoDePerfilUsuario.cs" />
+    <Compile Include="Interface\IAppServicoDePonto.cs" />
+    <Compile Include="Interface\IAppServicoDeTipoValor.cs" />
+    <Compile Include="Interface\IAppServicoDeUsuario.cs" />
+    <Compile Include="Interface\IAppServicoDeValores.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AppServicoBase.cs" />
+    <Compile Include="Services\AppServicoDaEmpresa.cs" />
+    <Compile Include="Services\AppServicoDaEtiqueta.cs" />
+    <Compile Include="Services\AppServicoDeCliente.cs" />
+    <Compile Include="Services\AppServicoDeClienteEvento.cs" />
+    <Compile Include="Services\AppServicoDeDespesa.cs" />
+    <Compile Include="Services\AppServicoDeEventos.cs" />
+    <Compile Include="Services\AppServicoDeEventoUsuario.cs" />
+    <Compile Include="Services\AppServicoDePerfilUsuario.cs" />
+    <Compile Include="Services\AppServicoDePonto.cs" />
+    <Compile Include="Services\AppServicoDeTipoValor.cs" />
+    <Compile Include="Services\AppServicoDeUsuario.cs" />
+    <Compile Include="Services\AppServicoDeValores.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JC-PARK.Domain\JC-PARK.Domain.csproj">
+      <Project>{fd9b52d7-6742-4c89-a043-782a5133b3d7}</Project>
+      <Name>JC-PARK.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JC-PARK.Infra.Data\JC-PARK.Infra.Data.csproj">
+      <Project>{1870de20-f692-4a96-9830-ea4b5b63b5ce}</Project>
+      <Name>JC-PARK.Infra.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="global.json" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

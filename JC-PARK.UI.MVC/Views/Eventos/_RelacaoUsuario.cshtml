@@ -1,0 +1,66 @@
+﻿@model IEnumerable<JC_PARK.Domain.Entities.EventoUsuario>
+
+<div class="row">
+    <div class="col-md-7 col-xs-8">
+        <h4><b>Funcionários do Evento </b> - @ViewBag.NomeEvento</h4>
+    </div>
+    <div class="col-md-5 col-sm-3 text-right">
+        @Html.ActionLink("OK", "Index", "Evento", null, new { @class = "btn btn-success", @title = "OK" })
+    </div>
+</div>
+
+<table class="table table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.Display("#")
+            </th>
+            <th>
+                @Html.Display("Funcionário")
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.HoraEntrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraSaida)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!@Model.Any())
+        {
+            <tr><td colspan="6" class="text-center"><em>Sem Usuários para este Evento!</em></td></tr>
+        }
+        else
+        {
+
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventoId.ToString("000"))
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UsuarioLista.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoraEntrada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoraSaida)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ativo)
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>

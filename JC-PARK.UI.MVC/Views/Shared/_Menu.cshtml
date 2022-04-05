@@ -1,0 +1,69 @@
+﻿@using JC_PARK.Web.MVC.Util
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("JC-Park", "Index", "Home", null, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-main">
+            @if (SessionManager.IsAuthenticated)
+            {
+                <ul class="nav navbar-nav">
+                    <!-- DropDown menu Cadastro -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Cadastros <b class="caret"></b> </a>
+                        <ul class="dropdown-menu" aria-labelledby="themes">
+                            <li role="menuitem">@Html.ActionLink("Clientes", "Index", "Clientes")</li>
+                            <li role="menuitem">@Html.ActionLink("Etiquetas", "Index", "Etiqueta")</li>
+                        </ul>
+                    </li>
+                    <!-- DropDown menu Movimento -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Financeiro <b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <li role="menuitem">@Html.ActionLink("Despesas", "Index", "Despesa")</li>
+                            <li class="dropdown-submenu">
+                                <a tabindex="-1" href="#"> Movimwento </a> 
+                                <ul class="dropdown-menu">
+                                    <li role="menuitem">@Html.ActionLink("por Evento", "Construcao", "Home")</li>
+                                    <li role="menuitem">@Html.ActionLink("Mensal", "Construcao", "Home")</li>
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <!-- DropDown menu Tabelas -->
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Tabelas <b class="caret"></b> </a>
+                        <ul class="dropdown-menu">
+                            <li role="menuitem">@Html.ActionLink("Tipo de Valores", "Index", "TipoValor")</li>
+                            <li role="menuitem">@Html.ActionLink("Valores", "Index", "Valor")</li>
+                        </ul>
+                    </li>
+                    
+                    @{if (SessionManager.UsuarioLogado.PerfilUsuarioId == 1) 
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Admin <b class="caret"></b> </a>
+                            <ul class="dropdown-menu">
+                                <li role="menuitem">@Html.ActionLink("Funcionários", "Index", "Usuario")</li>
+                                <li role="menuitem">@Html.ActionLink("Perfil Usuário", "Index", "PerfilUser")</li>
+                                <li role="menuitem" class="divider"></li>
+                                <li role="menuitem">@Html.ActionLink("Empresa", "Index", "Empresa")</li>
+                                <li role="menuitem">@Html.ActionLink("Eventos", "Index", "Eventos")</li>
+                            </ul>
+                        </li>
+                    }
+                    }
+                    <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                </ul>
+            }
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</div>

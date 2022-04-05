@@ -1,0 +1,71 @@
+﻿@model JC_PARK.Domain.Entities.EventoUsuario
+
+@{
+    ViewBag.Title = "Usuario x Eventos";
+    var txtID = Model.EventoId == 0 ? Html.Raw("&laquo; Auto Num &raquo;") : Html.Raw(Model.EventoId.ToString("D4"));
+
+}
+
+<div class="page-header">
+    <h2>Lista de Usuários por Evento</h2>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @*<div class="col-sm-2">
+                    @Html.Label("ID", htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.EventoId, new { htmlAttributes = new { @class = "form-control", @value = "@(Model.EventoId == 0 ? 'Auto' : Model.EventoId.ToString('0000')", @disabled = "disabled" } })
+                    @Html.ValidationMessageFor(model => model.EventoId, "", new { @class = "text-danger" })
+                </div>*@
+            <div class="col-sm-3">
+                @Html.LabelFor(model => model.UsuarioId, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.UsuarioLista.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UsuarioId, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-2">
+                @Html.LabelFor(model => model.HoraEntrada, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.HoraEntrada, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoraEntrada, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-2">
+                @Html.LabelFor(model => model.HoraSaida, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.HoraSaida, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.HoraSaida, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-2">
+                @Html.LabelFor(model => model.Salario, htmlAttributes: new { @class = "control-label" })
+                @Html.EditorFor(model => model.Salario, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Salario, "", new { @class = "text-danger" })
+            </div>
+            <div class="col-sm-2">
+                @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label" })
+                @Html.DropDownListFor(model => model.Ativo, new[]
+                {
+                    new SelectListItem {Text = "Sim", Value = "0"},
+                    new SelectListItem {Text = "Não", Value = "1"}
+                }, "Selecione ... ", new { @class = "form-control" })
+                @*<div class="checkbox">
+                        @Html.EditorFor(model => model.Ativo)
+                        @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
+                    </div>*@
+            </div>
+            <div class="col-md-1">
+                @Html.Label("Add", htmlAttributes: new { @class = "control-label" })
+                <button type="submit" class="btn btn-primary btn-sm fa fa-plus" title="Adicionar Usuário"></button>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,45 @@
+﻿
+@model IEnumerable<JC_PARK.Domain.Entities.EventoUsuario>
+<div class="row">
+    <br />
+    <table id="relContatos" class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Usuário")
+                </th>
+                <th>
+                    @Html.DisplayName("Hora Entrada")
+                </th>
+                <th>
+                    @Html.DisplayName("Hora Saída")
+                </th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!@Model.Any())
+            {
+                <tr><td colspan="5" class="text-center"><em>Sem usuários!</em></td></tr>
+            }
+            else
+            {
+                foreach (var item in @Model)
+                {
+                    <tr>
+                        <td>@item.UsuarioLista.Nome</td>
+                        <td>@item.HoraEntrada</td>
+                        <td>@item.HoraSaida</td>
+                        <td class="mnutable">
+                            <div class="btn-group">
+                                <button class="btn btn-default del-contato-btn btn-sm" data-nome="@item.UsuarioLista.Nome" data-id="@item.EventoUsuarioId" title="Excluir @item.UsuarioLista.Nome">
+                                    <i class="glyphicon glyphicon-remove"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

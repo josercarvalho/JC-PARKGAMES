@@ -1,0 +1,60 @@
+﻿@model IEnumerable<JC_PARK.Domain.Entities.Ponto>
+
+<div class="row">
+    <div class="col-md-7 col-xs-8">
+        <h4><b>Ponto do Funcionário(a) </b> - @ViewBag.NomeFunc</h4>
+    </div>
+    <div class="col-md-5 col-sm-3 text-right">
+        @Html.ActionLink("OK", "Index", "Usuario", null, new { @class = "btn btn-success", @title = "OK" })
+    </div>
+</div>
+<table class="table table-striped table-responsive">
+    <tbody>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Eventos.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataCadastro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraEntrada)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoraSaida)
+            </th>
+            @*<th></th>*@
+        </tr>
+    </tbody>
+    <thead>
+        @if (!@Model.Any())
+        {
+            <tr><td colspan="6" class="text-center"><em>Sem DADOS para este Funcionário!</em></td></tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EventoId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataCadastro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoraEntrada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.HoraSaida)
+                    </td>
+                    @*<td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.PontoId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.PontoId }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.PontoId })
+                    </td>*@
+                </tr>
+            }
+        }
+    </thead>
+</table>

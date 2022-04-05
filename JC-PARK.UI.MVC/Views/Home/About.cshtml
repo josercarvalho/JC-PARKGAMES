@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Sobre o JC-Park";
+}
+
+<div class="jumbotron lead">
+    <div class="content-wrapper" align="center">
+        <hgroup class="title">
+            <h1>@ViewBag.Title.</h1>
+        </hgroup>
+        <p>
+            <h3>Bem vindo ao Ultra Games Park Controler</h3>
+            <h4>Controle de Clientese</h4>
+        </p>
+    </div>
+</div>
+
+<div class="panel panel-primary">
+    <div class="panel-body">
+        <article class="col-lg-8">
+            <ol class="round">
+                <li class="one">
+                    <h5>Controle de Clientes.</h5>
+                    Controle aos Atendimentos dos Clientes.
+                </li>
+
+                <li class="two">
+                    <h5>Geração e Controle de Etiquetas.</h5>
+                    Controle de Etiquetas.
+                </li>
+
+                <li class="three">
+                    <h5>Cadastro de Empresas e Usuários</h5>
+                    Controle de Usuários por Perfil em Locais de eventos.
+                </li>
+            </ol>
+        </article>
+
+        <aside class="col-lg-3">
+            <h3>Navegação Básica</h3>
+            <p>
+                Navegação rápída.
+            </p>
+            <ul>
+                <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                <li>@Html.ActionLink("Sobre", "About", "Home")</li>
+                <li>@Html.ActionLink("Contato", "Contact", "Home")</li>
+            </ul>
+        </aside>
+    </div>
+</div>
+

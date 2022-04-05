@@ -1,0 +1,64 @@
+﻿@model IEnumerable<JC_PARK.Web.MVC.ViewModels.DespesaVM>
+
+<hr />
+<div class="row">
+    <div class="col-md-7 col-xs-8">
+        <h4><b>Despesas do Evento </b> - @ViewBag.NomeEvento</h4>
+    </div>
+    <div class="col-md-5 col-sm-3 text-right">
+        @Html.ActionLink("OK", "Index", "Despesa", null, new { @class = "btn btn-success", @title = "OK" })
+    </div>
+</div>
+
+<table class="table table-hover table-responsive">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayName("Lançamento")
+            </th>
+            <th>
+                @Html.DisplayName("Entrada")
+            </th>
+            <th>
+                @Html.DisplayName("Desconto Patio")
+            </th>
+            <th>
+                @Html.DisplayName("Despesas")
+            </th>
+            <th>
+                @Html.DisplayName("Total diário")
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @if (!@Model.Any())
+        {
+            <tr><td colspan="6" class="text-center"><em>Sem Usuários para este Evento!</em></td></tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataCadastro)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorEntrada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DescontoPatio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorDespesa)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalDia)
+                    </td>
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>

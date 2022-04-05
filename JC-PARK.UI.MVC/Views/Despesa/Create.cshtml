@@ -1,0 +1,135 @@
+﻿@model JC_PARK.Domain.Entities.Evento
+
+@{
+    ViewBag.Title = "Cadastro Despesas";
+    var txtID = @Model == null ? 0 : Model.EventoId;
+}
+
+<fieldset>
+    <legend>Cadastrar Despesas</legend>
+
+    @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+    @Html.HiddenFor(model => model.EventoId, new { @name = "EventoId", @data_bind = "value: EventoId" })
+
+    @*<div class="row">*@  
+        <dl class="col-md-3">
+            <dt>Nome do Evento</dt>
+            <dd>@Model.Nome</dd>
+            @*@Html.Label("Nome do Evento")
+                @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @title = "Nome do Evento" } })*@
+        </dl>
+        <dl class="col-md-3">
+            <dt>Local</dt>
+            <dd>@Model.Local</dd>
+            @*@Html.Label("Local")
+                @Html.EditorFor(model => model.Local, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @title = "Local do Evento" } })*@
+        </dl>
+        <dl class="col-md-2">
+            <dt>Data Inicial</dt>
+            <dd> @Model.DataInicial.ToShortDateString()</dd>
+            @*@Html.Label("Data Inicial")
+                @Html.EditorFor(model => model.DataInicial, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @title = "Data Inicial" } })*@
+        </dl>
+        <dl class="col-md-2">
+            <dt>Data Final</dt>
+            <dd>@Model.DataFinal.ToShortDateString()</dd>
+            @*@Html.Label("Data Final")
+                @Html.EditorFor(model => model.DataFinal, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @title = "Data Final" } })*@
+        </dl>
+        <dl class="col-md-2">
+            <dt>Valor Pátio</dt>
+            <dd>@Model.ValorPatio</dd>
+            @*@Html.Label("Valor Pátio")
+                @Html.EditorFor(model => model.ValorPatio, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled", @title = "Valor de Pátio" } })*@
+        </dl>
+    @*</div>*@
+</fieldset>
+<hr />
+<div class="row">
+    <div class="col-lg-5">
+
+        @using (Html.BeginForm("Create", "Despesa", FormMethod.Post, new { id = "nova_despesa" }))
+            {
+            <fieldset>
+                <legend>Despesa</legend>
+                <dib class="form-horizontal">
+
+                    <div class="form-group">
+                        @Html.Label("Data", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            <div class="input-group input-group-addon datetimepicker">
+                                @Html.TextBox("DataCadastro", null, new { @class = "form-control", @name = "DataCadastro", @data_bind = "value: DataCadastro" })
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Entrada", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.TextBox("ValorEntrada", null, new { @class = "form-control dinheiro", @name = "ValorEntrada", @data_bind = "value: ValorEntrada" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.Label("Saida", htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.TextBox("ValorDespesa", null, new { @class = "form-control dinheiro", @name = "ValorDespesa", @data_bind = "value: ValorDespesa" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button id="Add-btn" type="button" value="Adicionar" style="display: block;" data-id="@Model.EventoId" data-bind="click: adcionarItem" title="Adicionar Despesa à lista">Adicionar</button>
+                            <div id="progress" style="display: none;">
+                                <img src="~/Content/images/progress.gif" />
+                            </div>
+                        </div>
+                    </div>
+                </dib>
+            </fieldset>
+        }
+    </div>
+    <div class="col-lg-7">
+        <fieldset>
+            <legend>Listagem das Despesas</legend>
+            <div class="FixedContent">
+
+                <table id="ListaDespesas" class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>@Html.DisplayName("Data")</th>
+                            <th>@Html.DisplayName("Entrada")</th>
+                            <th>@Html.DisplayName("Despesas")</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: listaDespesas">
+                        <tr>
+                            <td data-bind="text: moment(DataCadastro).format('DD/MM/YYYY')"></td>
+                            <td data-bind="text: formatCurrency(ValorEntrada)"></td>
+                            <td data-bind="text: formatCurrency(ValorDespesa)"></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="text-primary text-nowrap">
+                            <td class="text-center"><b>TOTAL GERAL</b></td>
+                            <td data-bind="text: TotalEntrada"></td>
+                            <td data-bind="text: TotalDespesa"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="panel-footer">
+    <a class="btn btn-warning" href="@Url.Action("Index")"> << Voltar>> </a>
+    <h4 class="form-group pull-right">
+        <b>Valor Total: </b>
+        <span data-bind="text: TotalGeral"> </span>
+    </h4>
+
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/knockout")
+    <script src="~/Scripts/ViewModel/DespesaVM.js"></script>
+}

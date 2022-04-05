@@ -1,0 +1,16 @@
+﻿@using JC_PARK.Web.MVC.Util
+<ul class="nav navbar-nav navbar-right">
+    @if (SessionManager.IsAuthenticated)
+    {
+        @*<li><a href="@Url.Action("Ponto", "Account")"><span class="fa fa-user"></span> Olá @SessionManager.UsuarioLogado.Nome</a></li>*@
+        <li><a href="#" id="lnk-ponto"><span class="fa fa-user"></span> Olá @SessionManager.UsuarioLogado.Nome</a></li>
+        <li><a href="@Url.Action("Logoff", "Account")"><span class="fa fa-sign-out"></span> Sair</a></li>
+    }
+    else
+    {
+        <li>@Html.ActionLink("Login", "Login", "Account")</li>
+    }
+</ul>
+<script src="~/Scripts/jquery-3.1.1.min.js"></script>
+<script src="~/Scripts/MyJS/example.js"></script>
+<script src="~/Scripts/MyJS/Ponto.js"></script>

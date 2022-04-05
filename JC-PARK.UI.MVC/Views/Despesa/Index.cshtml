@@ -1,0 +1,166 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<JC_PARK.Domain.Entities.Evento>
+
+@{
+    ViewBag.Title = "Despesas";
+}
+
+<fieldset>
+    <legend>Listagem de Eventos</legend>
+    @using (Html.BeginForm("Index", "Despesa", FormMethod.Get, new { @class = "row" }))
+    {
+        <div class="col-md-7 col-xs-8">
+            <div class="col-md-6">
+                <div class="input-group input-group-sm">
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", autofocus = "autofocus", placeholder = "Procura por Nome" })
+                    <span class="input-group-btn">
+                        <button class="btn btn-default btn-sm" type="submit" title="Procurar">
+                            <span class="input-group"><i class="fa fa-search"></i></span>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-3 text-right">
+            @*@Html.ActionLink("Nova Registro", "Create", null, new { @class = "btn btn-success btn-sm", Title = "Cadastrar" })*@
+            @Html.ActionLink("Voltar", "Index", "Home", null, new { @class = "btn btn-warning btn-sm", title = "Tela Inicial" })
+        </div>
+    }
+    <hr />
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Nome do Evento")
+                </th>
+                <th>
+                    @Html.DisplayName("Local")
+                </th>
+                <th>
+                    @Html.DisplayName("Data Inicio")
+                </th>
+                <th>
+                    @Html.DisplayName("Data Final")
+                </th>
+                <th>
+                    @Html.DisplayName("Cidade")
+                </th>
+                <th>
+                    @Html.DisplayName("Estado")
+                </th>
+                <th>
+                    @Html.DisplayName("Valor do Pátio")
+                </th>
+                <th>
+                    @Html.DisplayName("Ação")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Local)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataInicial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataFinal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UF)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorPatio)
+                    </td>
+                    <td class="mnutable">
+                        <div class="btn-group btn-group-table">
+                            @Html.ActionLink(" ", "Create", new { id = item.EventoId }, new { @class = "btn btn-default fa fa-plus", Title = "Cadastrar Despesas" })
+                            @Ajax.ActionLink(" ", "_RelacaoDespesa", "Despesa",
+                                new
+                                {
+                                    id = item.EventoId,
+                                    nome = item.Nome
+                                },
+                                new AjaxOptions
+                                {
+                                    InsertionMode = InsertionMode.Replace,
+                                    LoadingElementId = "progress",
+                                    UpdateTargetId = "divResultado",
+                                    HttpMethod = "GET"
+                                }, new { @class = "btn btn-default fa fa-eye", @title = "Despesas do " + @item.Nome })
+                            @*<button class="btn btn-default contatos-btn  fa fa-user" data-idEve="@item.EventoId" data-nomeEve="@item.Nome" onclick: "" title="Usuários do @item.Nome"></button>*@
+                            @*<button id="delete-btn" class="btn btn-default delete-btn fa fa-trash" data-nome="@item.Nome" data-id="@item.EventoId" title="Excluir @item.Nome"></button>*@
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="pagination-sm">
+        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+</fieldset>
+
+<div id="divResultado"></div>
+
+<div id="progress" class="ui-loader" style="top: 270px; left: 553px; display: none;">
+    <div class="spin"></div>
+    <span>Aguarde ...</span>
+</div>
+
+<div class="bb-alert alert alert-info" style="display: none;">
+    <span>Os exemplos preencher esse alerta com conteúdo fictício</span>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            Example.init({
+                "selector": ".bb-alert"
+            });
+        });
+
+        function Refresh() {
+            location.reload(true);
+        };
+    </script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //var excluiUsuario;
+            $(".delete-btn").click(function (e) {
+                e.preventDefault();
+                var itemId = $(this).data('id');
+                var nome = $(this).data("nome");
+                bootbox.confirm("Tem certeza que deseja EXCLUIR " + nome + " ?",
+                    function (result) {
+                        if (result) {
+                            excluiUsuario(itemId);
+                            setTimeout("Refresh()", 3000);
+                        }
+                    });
+            });
+
+            var excluiUsuario = function (id) {
+                var strUrl = "/Eventos/DeleteEvento";
+                $.post(strUrl, { id: id }, function (data) {
+                    Example.show(data);
+                }, "json");
+            };
+        });
+
+    </script>
+}

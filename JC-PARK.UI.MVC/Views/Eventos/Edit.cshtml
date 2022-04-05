@@ -1,0 +1,151 @@
+﻿@model JC_PARK.Domain.Entities.Evento
+
+@{
+    ViewBag.Title = "Editar Evento";
+    var txtID = @Model == null ? 0 : Model.EventoId;
+}
+
+@using (Html.BeginForm("Edit", "Eventos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <fieldset>
+        <legend>Cadastrar Evento</legend>
+        <div class="col-lg-4">
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+            @Html.HiddenFor(model => model.EventoId)
+
+            <div class="clearfix form-group">
+                @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Nome, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nome, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="clearfix form-group">
+                @Html.LabelFor(model => model.Local, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Local, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Local, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="clearfix form-group">
+                @Html.LabelFor(model => model.DataInicial, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="input-group datetimepicker">
+                        @Html.EditorFor(model => model.DataInicial, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.DataInicial, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="clearfix form-group">
+                @Html.LabelFor(model => model.DataFinal, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <div class="input-group datetimepicker">
+                        @Html.EditorFor(model => model.DataFinal, new { htmlAttributes = new { @class = "form-control" } })
+                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.DataFinal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="clearfix form-group">
+                @Html.LabelFor(model => model.UF, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UF, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UF, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="clearfix form-group">
+                @Html.LabelFor(model => model.Cidade, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Cidade, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Cidade, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="clearfix form-group">
+                @Html.LabelFor(model => model.ValorPatio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ValorPatio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ValorPatio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button type="submit" class="btn btn-primary btn-sm">Salvar Registros</button>
+                    <a class="btn btn-danger btn-sm" href="@Url.Action("Index")">Cancelar</a>
+                    <a class="btn btn-warning btn-sm" href="@Url.Action("Index")">Voltar</a>
+                </div>
+            </div>
+        </div>
+
+        @if (@Model != null)
+        {
+            <div class="clearfix col-lg-8">
+                <fieldset>
+                    <legend>Relação de Funcionário do Evento</legend>
+                    <div class="form-group">
+                        <div class="col-xs-5">
+                            @Html.DropDownList("UsuarioId", ViewBag.UsuarioId as SelectList, "--- Funcionário ---", new { @class = "form-control", @name = "UsuarioId", @data_bind = "value: UsuarioId" })
+                        </div>
+                        <div class="col-xs-3">
+                            @Html.TextBox("HoraEntrada", null, new { @class = "form-control", @placeholder = "Entrada", @name = "HoraEntrada", @data_bind = "value: HoraEntrada" })
+                        </div>
+                        <div class="col-xs-3">
+                            @Html.TextBox("HoraSaida", null, new { @class = "form-control", @placeholder = "Saída", @nome = "HoraSaida", @data_bind = "value: HoraSaida" })
+                        </div>
+                        <div class="col-xs-1">
+                            <button id="Add-btn"
+                                    type="button"
+                                    class="btn btn-success fa fa-check"
+                                    data-id="@Model.EventoId"
+                                    data-bind="click: adcionarItem"
+                                    title="Adicionar Usuário"></button>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="FixedContent">
+                        <table id="listaUsuarios" class="table table-hover table-bordered table-responsive">
+                            <thead class="bg-info">
+                                <tr>
+                                    <th>Usuário</th>
+                                    <th>Entrada</th>
+                                    <th>Saída</th>
+                                    <th>&nbsp;</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach: listaUsuarios">
+                                <tr>
+                                    <td data-bind="text: UsuarioNome"></td>
+                                    <td data-bind="text: moment(HoraEntrada).format('HH:mm')"></td>
+                                    <td data-bind="text: moment(HoraSaida).format('HH:mm')"></td>
+                                    <td class="mnuTable">
+                                        <a class="btn btn-danger btn-group-table fa fa-trash text-center" title="Remover da lista" href='#' data-bind='click: $root.excluir'> Excluir </a>
+                                    </td>
+                                </tr>
+                        </table>
+                    </div>
+                </fieldset>
+            </div>
+        }
+    </fieldset>
+}
+
+<div id="progress" class="ui-loader" style="top: 270px; left: 553px; display: none;">
+    <div class="spin"></div>
+    <span>Aguarde ...</span>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/knockout")
+    <script src="~/Scripts/ViewModel/EventoVM.js"></script>
+}

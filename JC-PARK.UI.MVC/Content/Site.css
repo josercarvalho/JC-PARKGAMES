@@ -1,0 +1,520 @@
+﻿body {
+	padding-top: 60px;
+	padding-bottom: 20px;
+	/*background-color: #f0f0f0;*/
+}
+
+/*body, input, textarea {
+	color: #373737;
+	font: 17px "Segoe UI","Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	line-height: 1.625;
+}*/
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+#content {
+	border-radius: 10px 10px 10px 10px;
+	box-shadow: 0 3px 15px #CCCCCC;
+	padding: 5px;
+}
+
+
+h1 {
+	font-size: 26px !important;
+}
+
+h2 {
+	font-size: 20px !important;
+}
+
+h1, h2 {
+	font-weight: bold !important;
+}
+
+.navbar, li.nav-header {
+	font-variant: small-caps;
+	font-size: 1em !important;
+}
+
+ul.nav-stacked > li {
+	font-size: 0.9em;
+}
+
+div.del-contato {
+	padding: 20px 0 0;
+}
+
+	div.del-contato p {
+		font-size: 0.9em;
+		padding-top: 5px;
+	}
+
+div.nome-empresa {
+	font-weight: bold;
+	font-size: 1.1em;
+	color: #808080;
+}
+
+#contatosModal .modal-body div.row {
+	padding: 0 15px;
+}
+
+#contatosModal .modal-body div.dados-contato {
+	padding: 50px 0 5px 0;
+}
+
+.close-contato {
+	margin: 5px 10px 0 0;
+}
+
+.edit-contato {
+	margin: 11px 10px 0 0;
+	font-size: 0.8em;
+}
+
+.view-contatos{
+	font-size: 0.7em;
+}
+
+	.view-contatos:hover {
+		cursor:pointer;
+	}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+	max-width: 380px;
+}
+
+.field-validation-valid {
+	display: none;
+}
+
+.validation-summary-valid {
+	display: none;
+}
+
+.txt-data {
+	/*max-width: 120px !important;*/
+	width: 80% !important;
+}
+
+.no-block {
+	display: inline;
+}
+
+.caixa-grande {
+	max-width: none !important;
+	/*max-width: 400px !important;*/
+	width: 97%;
+}
+
+div#foto-aluno-div > figure {
+	font-size: 0.8em;
+	line-height: 0.95em;
+}
+
+
+	div#foto-aluno-div > figure:hover {
+		opacity: 0.4;
+		cursor: pointer;
+	}
+
+/*Evita erro 404 da fonte*/
+@font-face {
+	font-family: 'Font Awesome';
+	src: url('../fonts/fontawesome-webfont.eot');
+	src: url('../fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('../fonts/fontawesome-webfont.woff') format('woff'), url('../fonts/fontawesome-webfont.ttf') format('truetype'), url('../fonts/fontawesome-webfont.svg#glyphicons-halflingsregular') format('svg');
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+	white-space: normal;
+}
+
+.bs-component {
+	position: relative;
+}
+
+/* Configura a DIV para a foto no cadastro do cliente*/
+div#foto-cliente-div > figure {
+	font-size: 0.8em;
+	line-height: 0.95em;
+}
+
+	div#foto-cliente-div > figure:hover {
+		opacity: 0.4;
+		cursor: pointer;
+	}
+
+.dropdown-submenu {
+	position: relative;
+}
+
+	.dropdown-submenu > .dropdown-menu {
+		top: 0;
+		left: 100%;
+		margin-top: -6px;
+		margin-left: -1px;
+		-webkit-border-radius: 0 6px 6px 6px;
+		-moz-border-radius: 0 6px 6px;
+		border-radius: 0 6px 6px 6px;
+	}
+
+	.dropdown-submenu:hover > .dropdown-menu {
+		display: block;
+	}
+
+	.dropdown-submenu > a:after {
+		display: block;
+		content: " ";
+		float: right;
+		width: 0;
+		height: 0;
+		border-color: transparent;
+		border-style: solid;
+		border-width: 5px 0 5px 5px;
+		border-left-color: #ccc;
+		margin-top: 5px;
+		margin-right: -10px;
+	}
+
+	.dropdown-submenu:hover > a:after {
+		border-left-color: #fff;
+	}
+
+	.dropdown-submenu.pull-left {
+		float: none;
+	}
+
+		.dropdown-submenu.pull-left > .dropdown-menu {
+			left: -100%;
+			margin-left: 10px;
+			-webkit-border-radius: 6px 0 6px 6px;
+			-moz-border-radius: 6px 0 6px 6px;
+			border-radius: 6px 0 6px 6px;
+		}
+
+/*Tabelas da Index - Listagem*/
+table {
+	font-size: 1.0em;
+}
+
+div#partial {
+	padding: 10px 0 10px 40px;
+	min-height: 335px;
+}
+
+#tabelaDados, #menuPaginacao {
+	padding-left: 20px;
+}
+
+div.del-contato {
+	padding: 20px 0 0;
+}
+
+	div.del-contato p {
+		font-size: 0.9em;
+		padding-top: 5px;
+	}
+
+div.nome-evento {
+	font-weight: bold;
+	font-size: 1.1em;
+	color: #808080;
+}
+.btn-group-table {
+	visibility: hidden;
+}
+
+.table tr:hover .btn-group-table {
+	visibility: visible;
+}
+
+.table tbody > tr > td {
+	vertical-align: middle;
+}
+
+/*table>tbody {
+  overflow: auto;
+  height: 280px;
+  overflow-x: hidden;
+}*/
+
+.mnuTable {
+	width: 100px;
+}
+
+/*
+	Controla a largura da tabela com barra de rolagem
+*/
+.FixedContainer {
+	float: right;
+	height: 250px;
+	width: 500px;
+	padding: 3px;
+	overflow: auto;
+}
+
+.FixedContent {
+	height: 230px;
+	width: auto;
+	padding: 3px;
+	overflow: auto;
+}
+
+/*
+ * Animação de Processamentos
+ *
+ * Executado cada vez que uma atividade é enviada ao servidor para distração do usuário.
+ */
+.progresso {
+	display: none;
+	position: fixed;
+	top: 360px;
+	left: 50%;
+	margin-top: -50px;
+	margin-left: -100px;
+	vertical-align: middle;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+	background-color: white;
+	/*border: 0.5px solid black;*/
+	height: 90px;
+	width: 130px;
+}
+
+.ui-loader {
+	background: none repeat scroll 0 0 #828282;
+	/*background: none repeat scroll 0 0% rgba(130, 130, 130, 0.8);*/
+	border: 1px solid #454545;
+	box-shadow: 0 0 3px #B1B1B1, 0 1px 0 #D5D5D5 inset;
+	border-radius: 3px;
+	color: #FFF;
+	padding: 20px 30px;
+	position: fixed;
+	text-align: center;
+	text-shadow: 0 -1px #6D6D6D;
+	width: 200px;
+	z-index: 103;
+}
+
+.spin {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 50px;
+	width: 32px;
+	height: 32px;
+	background: url('images/spinner_g.gif') no-repeat scroll 0 0 transparent;
+	background-color: transparent;
+	background-image: url('images/spinner_g.gif');
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: 0 0;
+	background-clip: border-box;
+	background-origin: padding-box;
+	background-size: auto auto;
+	opacity: 0.8;
+}
+
+#ajaxBusy {
+	background: #222222 url('images/ajax-loader-black.gif') 20px 50% no-repeat;
+	color: #ffffff;
+	display: block;
+	font-size: 140%;
+	height: 60px;
+	left: 50%;
+	line-height: 60px;
+	margin: -30px 0 0 -85px;
+	padding: 0 20px;
+	position: fixed;
+	text-align: right;
+	top: 50%;
+	width: 170px;
+	z-index: 99999;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	-webkit-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+	-moz-box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+	box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+}
+
+	#ajaxBusy p {
+		margin: 0;
+	}
+
+/*
+	Controla respostas do BootBox.js com o Example.js
+*/
+.lead-top {
+	margin-top: 1em;
+}
+
+.bb-code {
+	font-family: "Courier";
+	font-size: 1.2em;
+}
+
+.bb-code-string {
+	color: #3276b1;
+}
+
+.code-leader {
+	font-weight: bold;
+}
+
+.bb-code-small {
+	font-size: 0.9em;
+}
+
+.bb-alert {
+	position: fixed;
+	bottom: 25%;
+	right: 0;
+	margin-bottom: 0;
+	font-size: 1.2em;
+	padding: 1em 1.3em;
+	z-index: 2000;
+}
+
+#gist6327194,
+#gist6339916 {
+	height: 300px;
+	overflow: auto;
+}
+
+#gist6339780 {
+	height: 600px;
+	overflow: auto;
+}
+
+.Linha {
+	border-top: solid 2px #282828;
+	width: 430px;
+	height: 10px;
+}
+
+/* ALERT ESPECÍFICOS COM CORES DIVERSAS */
+.alert-purple {
+	border-color: #694D9F;
+	background: #694D9F;
+	color: #fff;
+}
+
+.alert-info-alt {
+	border-color: #B4E1E4;
+	background: #81c7e1;
+	color: #fff;
+}
+
+.alert-danger-alt {
+	border-color: #B63E5A;
+	background: #E26868;
+	color: #fff;
+}
+
+.alert-warning-alt {
+	border-color: #F3F3EB;
+	background: #E9CEAC;
+	color: #fff;
+}
+
+.alert-success-alt {
+	border-color: #19B99A;
+	background: #20A286;
+	color: #fff;
+}
+
+.glyphicon {
+	margin-right: 10px;
+}
+
+.alert a {
+	color: gold;
+}
+
+
+/* frescura p/ fazer o ícone do bootstrap girar!*/
+.icon-refresh-animate {
+	visibility: visible !important;
+	-moz-animation-name: rotateThis;
+	-o-animation-name: rotateThis;
+	-webkit-animation-name: rotateThis;
+	animation-name: rotateThis;
+	-moz-animation-duration: .5s;
+	-o-animation-duration: .5s;
+	-webkit-animation-duration: .5s;
+	animation-duration: .5s;
+	-moz-animation-iteration-count: infinite;
+	-o-animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	-moz-animation-timing-function: linear;
+	-o-animation-timing-function: linear;
+	-webkit-animation-timing-function: linear;
+	animation-timing-function: linear;
+}
+
+@-moz-keyframes rotateThis {
+	from {
+		-moz-transform: scale( 1 ) rotate( 0deg );
+		-ms-transform: scale( 1 ) rotate( 0deg );
+		-o-transform: scale( 1 ) rotate( 0deg );
+		-webkit-transform: scale( 1 ) rotate( 0deg );
+		transform: scale( 1 ) rotate( 0deg );
+	}
+
+	to {
+		-moz-transform: scale( 1 ) rotate( 360deg );
+		-ms-transform: scale( 1 ) rotate( 360deg );
+		-o-transform: scale( 1 ) rotate( 360deg );
+		-webkit-transform: scale( 1 ) rotate( 360deg );
+		transform: scale( 1 ) rotate( 360deg );
+	}
+}
+
+@-webkit-keyframes rotateThis {
+	from {
+		-moz-transform: scale( 1 ) rotate( 0deg );
+		-ms-transform: scale( 1 ) rotate( 0deg );
+		-o-transform: scale( 1 ) rotate( 0deg );
+		-webkit-transform: scale( 1 ) rotate( 0deg );
+		transform: scale( 1 ) rotate( 0deg );
+	}
+
+	to {
+		-moz-transform: scale( 1 ) rotate( 360deg );
+		-ms-transform: scale( 1 ) rotate( 360deg );
+		-o-transform: scale( 1 ) rotate( 360deg );
+		-webkit-transform: scale( 1 ) rotate( 360deg );
+		transform: scale( 1 ) rotate( 360deg );
+	}
+}
+
+@keyframes rotateThis {
+	from {
+		-moz-transform: scale( 1 ) rotate( 0deg );
+		-ms-transform: scale( 1 ) rotate( 0deg );
+		-o-transform: scale( 1 ) rotate( 0deg );
+		-webkit-transform: scale( 1 ) rotate( 0deg );
+		transform: scale( 1 ) rotate( 0deg );
+	}
+
+	to {
+		-moz-transform: scale( 1 ) rotate( 360deg );
+		-ms-transform: scale( 1 ) rotate( 360deg );
+		-o-transform: scale( 1 ) rotate( 360deg );
+		-webkit-transform: scale( 1 ) rotate( 360deg );
+		transform: scale( 1 ) rotate( 360deg );
+	}
+}

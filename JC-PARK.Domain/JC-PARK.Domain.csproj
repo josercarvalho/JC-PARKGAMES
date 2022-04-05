@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FD9B52D7-6742-4C89-A043-782A5133B3D7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JC_PARK.Domain</RootNamespace>
+    <AssemblyName>JC-PARK.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.CommonServiceLocator.1.2.2\lib\net35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Entities\Cliente.cs" />
+    <Compile Include="Entities\ClienteEvento.cs" />
+    <Compile Include="Entities\Despesa.cs" />
+    <Compile Include="Entities\Empresa.cs" />
+    <Compile Include="Entities\Etiqueta.cs" />
+    <Compile Include="Entities\Evento.cs" />
+    <Compile Include="Entities\EventoUsuario.cs" />
+    <Compile Include="Entities\PerfilUsuario.cs" />
+    <Compile Include="Entities\Ponto.cs" />
+    <Compile Include="Enum\Sexo.cs" />
+    <Compile Include="Enum\TipoContrato.cs" />
+    <Compile Include="Entities\TipoValor.cs" />
+    <Compile Include="Entities\Usuario.cs" />
+    <Compile Include="Entities\Valores.cs" />
+    <Compile Include="Interfaces\Infra\IGerenciadorDeRepositorio.cs" />
+    <Compile Include="Interfaces\Infra\IUnidadeDeTrabalho.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioBase.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioDaEmpresa.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioDeClienteEvento.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioDeClientes.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioDeDespesas.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioDeEtiqueta.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioDeEventos.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioDeEventoUsuario.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioDePerfilDeUsuario.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioDePonto.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioDeTipoValor.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioDeUsuarios.cs" />
+    <Compile Include="Interfaces\Repositories\IRepositorioDeValores.cs" />
+    <Compile Include="Interfaces\Services\IServicoBase.cs" />
+    <Compile Include="Interfaces\Services\IServicoDaEmpresa.cs" />
+    <Compile Include="Interfaces\Services\IServicoDaEtiqueta.cs" />
+    <Compile Include="Interfaces\Services\IServicoDeCliente.cs" />
+    <Compile Include="Interfaces\Services\IServicoDeClienteEvento.cs" />
+    <Compile Include="Interfaces\Services\IServicoDeDespesas.cs" />
+    <Compile Include="Interfaces\Services\IServicoDeEventos.cs" />
+    <Compile Include="Interfaces\Services\IServicoDeEventoUsuario.cs" />
+    <Compile Include="Interfaces\Services\IServicoDePerfilUsuario.cs" />
+    <Compile Include="Interfaces\Services\IServicoDePonto.cs" />
+    <Compile Include="Interfaces\Services\IServicoDeTipoValor.cs" />
+    <Compile Include="Interfaces\Services\IServicoDeUsuario.cs" />
+    <Compile Include="Interfaces\Services\IServicoDeValores.cs" />
+    <Compile Include="MetaData\ClienteEventoMetadata.cs" />
+    <Compile Include="MetaData\ClienteMetadata.cs" />
+    <Compile Include="MetaData\DespesaMetadata.cs" />
+    <Compile Include="MetaData\EmpresaMetaData.cs" />
+    <Compile Include="MetaData\EtiquetaMetaData.cs" />
+    <Compile Include="MetaData\EventoMetaData.cs" />
+    <Compile Include="MetaData\EventoUsuarioMetaData.cs" />
+    <Compile Include="MetaData\ModulosAcessoMetaData.cs" />
+    <Compile Include="MetaData\PerfilUsuarioMetaData.cs" />
+    <Compile Include="MetaData\PontoMetaData.cs" />
+    <Compile Include="MetaData\TipoValorMetaData.cs" />
+    <Compile Include="MetaData\UsuarioMetaData.cs" />
+    <Compile Include="MetaData\ValoresMetaData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ServicoBase.cs" />
+    <Compile Include="Services\ServicoDaEmpresa.cs" />
+    <Compile Include="Services\ServicoDaEtiqueta.cs" />
+    <Compile Include="Services\ServicoDeCliente.cs" />
+    <Compile Include="Services\ServicoDeClienteEvento.cs" />
+    <Compile Include="Services\ServicoDeDespesas.cs" />
+    <Compile Include="Services\ServicoDeDominioBase.cs" />
+    <Compile Include="Services\ServicoDeEventos.cs" />
+    <Compile Include="Services\ServicoDeEventoUsuario.cs" />
+    <Compile Include="Services\ServicoDePerfilUsuario.cs" />
+    <Compile Include="Services\ServicoDePonto.cs" />
+    <Compile Include="Services\ServicoDeTipoValor.cs" />
+    <Compile Include="Services\ServicoDeUsuario.cs" />
+    <Compile Include="Services\ServicoDeValores.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

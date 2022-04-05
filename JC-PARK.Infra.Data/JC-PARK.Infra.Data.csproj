@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1870DE20-F692-4A96-9830-EA4B5B63B5CE}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>JC_PARK.Infra.Data</RootNamespace>
+    <AssemblyName>JC-PARK.Infra.Data</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Portable.CommonServiceLocator.1.2.2\lib\net35\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Contexto\ContextoBanco.cs" />
+    <Compile Include="EntityConfig\ClienteConfiguration.cs" />
+    <Compile Include="EntityConfig\ClienteEventoConfiguration.cs" />
+    <Compile Include="EntityConfig\DespesaConfiguration.cs" />
+    <Compile Include="EntityConfig\EmpresaConfiguration.cs" />
+    <Compile Include="EntityConfig\EtiquetaConfiguration.cs" />
+    <Compile Include="EntityConfig\EventoConfiguration.cs" />
+    <Compile Include="EntityConfig\EventoUsuarioConfiguration.cs" />
+    <Compile Include="EntityConfig\GerenciadorDeRepositorio.cs" />
+    <Compile Include="EntityConfig\PerfilUsuarioConfiguration.cs" />
+    <Compile Include="EntityConfig\PontoConfiguration.cs" />
+    <Compile Include="EntityConfig\TipoValorConfiguration.cs" />
+    <Compile Include="EntityConfig\UnidadeDeTrabalhoEF.cs" />
+    <Compile Include="EntityConfig\UsuarioConfiguration.cs" />
+    <Compile Include="EntityConfig\ValorConfiguration.cs" />
+    <Compile Include="Initializer\UserDatabaseInitializer.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provider\ConfiguracaoProvider.cs" />
+    <Compile Include="Repositories\RepositorioBase.cs" />
+    <Compile Include="Repositories\RepositorioDaEmpresa.cs" />
+    <Compile Include="Repositories\RepositorioDeClienteEvento.cs" />
+    <Compile Include="Repositories\RepositorioDeClientes.cs" />
+    <Compile Include="Repositories\RepositorioDeDespesas.cs" />
+    <Compile Include="Repositories\RepositorioDeEtiqueta.cs" />
+    <Compile Include="Repositories\RepositorioDeEventos.cs" />
+    <Compile Include="Repositories\RepositorioDeEventoUsuario.cs" />
+    <Compile Include="Repositories\RepositorioDePerfilDeUsuario.cs" />
+    <Compile Include="Repositories\RepositorioDePonto.cs" />
+    <Compile Include="Repositories\RepositorioDeTipoValor.cs" />
+    <Compile Include="Repositories\RepositorioDeUsuarios.cs" />
+    <Compile Include="Repositories\RepositorioDeValores.cs" />
+    <Compile Include="Security\Constants.cs" />
+    <Compile Include="Security\Crypto.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sql\Seed\" />
+    <Folder Include="Sql\StoredProcs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JC-PARK.Domain\JC-PARK.Domain.csproj">
+      <Project>{fd9b52d7-6742-4c89-a043-782a5133b3d7}</Project>
+      <Name>JC-PARK.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

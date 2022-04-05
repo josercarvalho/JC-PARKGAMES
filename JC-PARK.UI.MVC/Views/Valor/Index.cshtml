@@ -1,0 +1,141 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<JC_PARK.Domain.Entities.Valores>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<fieldset>
+    <legend>Listagem de valores</legend>
+    @using (Html.BeginForm("Index", "PerfilUser", FormMethod.Get, new { @class = "row" }))
+    {
+        <div class="col-md-7 col-xs-8">
+            <div class="col-md-6">
+                @*<div class="input-group input-group-sm">
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", @autofocus = "autofocus", @placeholder = "Procura por Nome" })
+                        <span class="input-group-btn">
+                            <button class="btn btn-default btn-sm" type="submit" title="Procurar">
+                                <span class="input-group"><i class="fa fa-search"></i></span>
+                            </button>
+                        </span>
+                    </div>*@
+            </div>
+        </div>
+        <div class="col-md-5 col-sm-3 text-right">
+            @Html.ActionLink("Novo Registro", "Create", null, new { @class = "btn btn-success btn-sm", Title = "Cadastrar" })
+            @Html.ActionLink("Voltar", "Index", "Home", null, new { @class = "btn btn-warning btn-sm", title = "Tela Inicial" })
+        </div>
+    }
+    <hr />
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("#")
+                </th>
+                <th>
+                    @Html.DisplayName("Evento")
+                </th>
+                <th>
+                    @Html.DisplayName("Tipo Valor")
+                </th>
+                <th>
+                    @Html.DisplayName("Valor Normal")
+                </th>
+                <th>
+                    @Html.DisplayName("Minutos excedentes")
+                </th>
+                <th>
+                    @Html.DisplayName("Hora excedente")
+                </th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValoresId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Eventos.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TipoValores.Nome)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorNormal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorEPorMinuto)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ValorEPorHora)
+                    </td>
+                    <td class="mnuTable">
+                        <div class="btn-group btn-group-table">
+                            @Html.ActionLink(" ", "Edit", new { id = item.ValoresId }, new { @class = "btn btn-default btn-sm fa fa-folder-open", Title = "Editar" })
+                            <button id="btn-delete" class="btn btn-default btn-delete btn-sm fa fa-trash" data-nome="@item.ValorNormal" data-id="@item.ValoresId" title="Excluir @item.ValorNormal"></button>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="pagination-sm">
+        Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+    </div>
+</fieldset>
+
+<div class="bb-alert alert alert-info" style="display: none;">
+    <span>Os exemplos preencher esse alerta com conteúdo fictício</span>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            Example.init({
+                "selector": ".bb-alert"
+            });
+        });
+
+        function Refresh() {
+            location.reload(true);
+        };
+    </script>
+
+    <script type="text/javascript">
+        $(document)
+            .ready(function () {
+                var excluiValor;
+                $(".btn-delete")
+                    .click(function (e) {
+                        e.preventDefault();
+                        var itemId = $(this).data('id');
+                        var nome = $(this).data("nome");
+                        bootbox.confirm("Tem certeza que deseja EXCLUIR " + nome + " ?",
+                            function (result) {
+                                if (result) {
+                                    excluiValor(itemId);
+                                    setTimeout("Refresh()", 3000);
+                                }
+                            });
+                    });
+                excluiValor = function (id) {
+                    var strUrl = "/Valor/DeleteValor";
+                    $.post(strUrl,
+                        { id: id },
+                        function (data) {
+                            Example.show(data);
+                        },
+                        "json");
+                };
+            });
+    </script>
+}
